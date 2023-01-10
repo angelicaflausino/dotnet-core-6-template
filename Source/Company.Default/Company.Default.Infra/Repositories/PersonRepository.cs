@@ -1,8 +1,6 @@
 ﻿using Company.Default.Domain.Entities;
 using Company.Default.Infra.Base;
 using Company.Default.Infra.Contexts;
-using System.Linq.Dynamic.Core;
-using System.Linq.Expressions;
 
 namespace Company.Default.Infra.Repositories
 {
