@@ -15,6 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddProfile<EntityToDtoProfile>();
+                cfg.AddProfile<DtoToEntityProfile>();
             });
 
             //Validations
