@@ -7,9 +7,9 @@ namespace Company.Default.Domain.Base
         object IEntity.Id { get => Id; set { } }
 
         [Required]
-        public T Id { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public bool Enabled { get; set; }
+        public virtual T Id { get; set; }
+        public virtual DateTime CreatedAt { get; set; }
+        public virtual DateTime? UpdatedAt { get; set; }
+        public virtual bool Enabled { get; set; }
     }
 }

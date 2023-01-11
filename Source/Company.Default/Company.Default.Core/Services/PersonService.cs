@@ -48,7 +48,7 @@ namespace Company.Default.Core.Services
                 var paged = _uow.Person.GetPaged(expression, parameter.Page, parameter.Size, parameter.SortBy);
                 var persons = paged.Queryable.ToList();
 
-                //TODO: Ver se dá para projetar sem o automapper na linq dynamic
+                //TODO: Seria melhor projetar o dto com o linq
                 return new PagedResultDto<PersonDto> 
                 { 
                     Total = paged.RowCount, 
@@ -62,7 +62,7 @@ namespace Company.Default.Core.Services
             }
         }
 
-        //TODO: Projetar invés do automapper seria uma boa
+        //TODO: Projetar o Dto?
         public PersonDto GetPerson(int id)
         {
             try

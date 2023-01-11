@@ -7,11 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.24" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.24" />
+    <Compile Update="Resources\Validations.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Validations.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Validations.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Validations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

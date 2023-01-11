@@ -73,6 +73,8 @@ namespace Company.Default.Core.Services
         {
             try
             {
+                entity.UpdatedAt = DateTime.UtcNow;
+
                 _uow.BeginTransaction();
                 _uow.Person.Update(entity);
                 _uow.SaveChanges();

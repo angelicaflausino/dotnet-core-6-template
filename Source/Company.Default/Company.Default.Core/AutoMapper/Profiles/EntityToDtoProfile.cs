@@ -4,11 +4,11 @@ using Company.Default.Domain.Entities;
 
 namespace Company.Default.Core.AutoMapper.Profiles
 {
-    public class EntityProfile : Profile
+    public class EntityToDtoProfile : Profile
     {
-        public EntityProfile()
+        public EntityToDtoProfile()
         {
-            CreateProjection<Person, PersonDto>()
+            CreateMap<Person, PersonDto>()
                 .ForMember(dto => dto.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
         }
     }
