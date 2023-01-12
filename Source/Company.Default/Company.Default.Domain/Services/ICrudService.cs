@@ -1,10 +1,10 @@
 ﻿namespace Company.Default.Domain.Services
 {
-    public interface ICrudService<T> where T : class
+    public interface ICrudService<T, TKey> where T : class
     {
         T Create(T entity);
-        T Get(int id);
+        T Get(TKey id);
         void Update(T entity);
-        bool Delete(int id);
+        bool Delete(TKey id);
     }
 }
