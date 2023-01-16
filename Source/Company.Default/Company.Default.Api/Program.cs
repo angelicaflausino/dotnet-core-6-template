@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 
@@ -25,6 +26,10 @@ namespace Company.Default.Api
 
             //Register Core
             builder.Services.AddCore();
+
+
+            //Register Cloud
+            builder.Services.AddCloud(builder.Configuration);
 
             var app = builder.Build();
 
