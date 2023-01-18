@@ -196,10 +196,7 @@ namespace Company.Default.Tests.Cloud
 
         private BlobStorageService GetBlobStorageService()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.Test.json")
-                .Build();
+            var config = TestUtils.GetConfiguration();
 
             string connectionString = config.GetSection("Storage:ConnectionString").Value;
             
