@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.Resource;
 
 namespace Company.Default.Api
 {
@@ -10,6 +8,12 @@ namespace Company.Default.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Providing a connection string is required if you're using the
+            // standalone Microsoft.Extensions.Logging.ApplicationInsights package,
+            // or when you need to capture logs during application startup, such as
+            // in Program.cs or Startup.cs itself.
+            builder.Services.AddApplicationInsightsTelemetry();
 
             // Add services to the container.
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -25,6 +29,8 @@ namespace Company.Default.Api
 
             //Register Core
             builder.Services.AddCore();
+
+            //builder.Services.AddScoped<IAppInsightsService, AppInsightsService>();
 
             var app = builder.Build();
 

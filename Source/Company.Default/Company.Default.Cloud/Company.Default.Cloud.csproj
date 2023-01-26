@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,13 +9,21 @@
   <ItemGroup>
     <Folder Include="ActiveDirectory\" />
     <Folder Include="KeyVault\" />
-    <Folder Include="Insights\" />
-    <Folder Include="LogicApp\" />
     <Folder Include="Functions\" />
     <Folder Include="Graph\" />
     <Folder Include="Cache\" />
+    <Folder Include="LogicApp\" />
     <Folder Include="ServiceBus\" />
     <Folder Include="Storage\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Company.Default.Domain\Company.Default.Domain.csproj" />
   </ItemGroup>
 
 </Project>
