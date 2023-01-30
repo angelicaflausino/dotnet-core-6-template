@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IValidator<Person>, PersonValidator>();
 
             //Services
-            services.AddScoped<ICrudService<Person>, PersonCrudService>();
+            services.AddScoped<ICrudService<Person, long>, PersonCrudService>();
             services.AddScoped<IPersonService, PersonService>();
         }
     }

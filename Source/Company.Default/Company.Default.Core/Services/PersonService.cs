@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using Company.Default.Domain.Base;
 using Company.Default.Domain.Dtos;
 using Company.Default.Domain.Entities;
 using Company.Default.Domain.Filters;
 using Company.Default.Domain.Services;
 using Company.Default.Infra.Base;
+using FluentValidation;
+using FluentValidation.Results;
 using LinqKit;
 using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
@@ -15,12 +18,14 @@ namespace Company.Default.Core.Services
         private readonly IUnitOfWork _uow;
         private readonly ILogger<PersonService> _logger;
         private readonly IMapper _mapper;
+        private readonly IValidator<Person> _validator;
 
-        public PersonService(IUnitOfWork uow, ILogger<PersonService> logger, IMapper mapper)
+        public PersonService(IUnitOfWork uow, ILogger<PersonService> logger, IMapper mapper, IValidator<Person> validator)
         {
             _uow = uow;
             _logger = logger;
             _mapper = mapper;
+            _validator = validator;
         }
 
         public IEnumerable<PersonDto> GetAll()
@@ -63,7 +68,7 @@ namespace Company.Default.Core.Services
         }
 
         //TODO: Projetar o Dto?
-        public PersonDto GetPerson(int id)
+        public PersonDto GetPerson(long id)
         {
             try
             {
@@ -79,6 +84,22 @@ namespace Company.Default.Core.Services
                 throw;
             }
         }
+
+        public Person MapFromDto(PersonDto personDto) => _mapper.Map<Person>(personDto);
+
+        public ValidatorResult Validate(Person person, params string[] rules)
+        {
+            
+            var validator = _validator.Validate(person, opt =>
+            {
+                opt.IncludeRuleSets(rules);
+            });
+
+            return new ValidatorResult(validator.IsValid, GetValidatorErrors(validator.Errors));  
+        }
+
+        private IList<ValidatorError> GetValidatorErrors(IList<ValidationFailure> failures) =>
+            failures.Select(x => new ValidatorError(x.PropertyName, x.ErrorMessage)).ToList();
 
         #region Expressions
         private Expression<Func<Person, bool>> GetSearchExpression(PersonFilterParameter filter)

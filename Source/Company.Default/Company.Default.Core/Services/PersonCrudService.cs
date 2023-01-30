@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Company.Default.Core.Services
 {
-    public class PersonCrudService : ICrudService<Person>
+    public class PersonCrudService : ICrudService<Person, long>
     {
         private readonly IUnitOfWork _uow;
         private readonly ILogger<PersonCrudService> _logger;
@@ -35,7 +35,7 @@ namespace Company.Default.Core.Services
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(long id)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Company.Default.Core.Services
             }
         }
 
-        public Person Get(int id)
+        public Person Get(long id)
         {
             try
             {

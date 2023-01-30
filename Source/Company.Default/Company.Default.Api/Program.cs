@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 
 namespace Company.Default.Api
@@ -13,7 +14,6 @@ namespace Company.Default.Api
             // standalone Microsoft.Extensions.Logging.ApplicationInsights package,
             // or when you need to capture logs during application startup, such as
             // in Program.cs or Startup.cs itself.
-            builder.Services.AddApplicationInsightsTelemetry();
 
             // Add services to the container.
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -30,7 +30,9 @@ namespace Company.Default.Api
             //Register Core
             builder.Services.AddCore();
 
-            //builder.Services.AddScoped<IAppInsightsService, AppInsightsService>();
+
+            //Register Cloud
+            builder.Services.AddCloud(builder.Configuration);
 
             var app = builder.Build();
 
