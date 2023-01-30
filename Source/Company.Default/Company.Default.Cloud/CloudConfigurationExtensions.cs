@@ -16,11 +16,16 @@ namespace Microsoft.Extensions.DependencyInjection
                 builder.AddSecretClient(configuration.GetSection("KeyVault:VaultUri"));
 
                 //Storage Account
+                //Blob
                 builder.AddBlobServiceClient(configuration.GetSection("Storage"));
+                //Queue
+                builder.AddQueueServiceClient(configuration.GetSection("Storage"));
+                
             });
 
             services.AddScoped<IBlobStorageService, BlobStorageService>();
             services.AddScoped<IKeyVaultService, KeyVaultService>();
+            services.AddScoped<IQueueStorageService, QueueStorageService>();
         }
     }
 }
