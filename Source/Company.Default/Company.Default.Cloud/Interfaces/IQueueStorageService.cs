@@ -7,7 +7,7 @@ namespace Company.Default.Cloud.Interfaces
     {
         void ClearMessages();
         Task ClearMessagesAsync(CancellationToken cancellationToken = default);
-        void CreateIfNotExists(Dictionary<string, string>? metadata);
+        void CreateIfNotExists(Dictionary<string, string>? metadata = null);
         Task CreateIfNotExistsAsync(Dictionary<string, string>? metadata, CancellationToken cancellationToken);
         Task DeleteMessageAsync(string messageId, string popReceipt, CancellationToken cancellationToken = default);
         Task<bool> DeleteIfExistAsync(CancellationToken cancellationToken = default);

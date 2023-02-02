@@ -1,4 +1,5 @@
-﻿using Company.Default.Cloud.Interfaces;
+﻿using Azure.Storage.Queues;
+using Company.Default.Cloud.Interfaces;
 using Company.Default.Cloud.KeyVault;
 using Company.Default.Cloud.Storage;
 using Microsoft.Extensions.Azure;
@@ -14,33 +15,35 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             _configuration = configuration;
 
-            string storageConnectionString = GetStorageConnectionStrings();
-            Uri keyVaultUri = new Uri(GetKeyVaultUri());
-
             services.AddAzureClients(builder =>
             {
                 //KeyVault
-                builder.AddSecretClient(keyVaultUri);
+                builder.AddSecretClient(new Uri(_keyVaultUri));
 
                 //Storage Account
                 //Blob
-                builder.AddBlobServiceClient(storageConnectionString);
+                builder.AddBlobServiceClient(_storageConnectionString);
                 //Queue
-                builder.AddQueueServiceClient(storageConnectionString);
+                builder.AddQueueServiceClient(_storageConnectionString);
                 //Table
-                builder.AddTableServiceClient(storageConnectionString);
-                
+                builder.AddTableServiceClient(_storageConnectionString);                
             });
 
             services.AddScoped<IBlobStorageService, BlobStorageService>();
             services.AddScoped<IKeyVaultService, KeyVaultService>();
-            services.AddScoped<IQueueStorageService, QueueStorageService>();
+            services.AddScoped<IQueueStorageService, QueueStorageService>(provider =>
+            {
+                var queueClient = new QueueClient(_storageConnectionString, _queueName);
+                return new QueueStorageService(queueClient);
+            });
             services.AddScoped<ITableStorageService, TableStorageService>();
         }
 
-        private static string GetStorageConnectionStrings() => _configuration.GetSection("Storage").Value ?? string.Empty;
+        private static string _storageConnectionString => _configuration.GetValue<string>("Storage:ConnectionString");
 
-        private static string GetKeyVaultUri() => _configuration.GetSection("KeyVault:VaultUri").Value ?? string.Empty;
+        private static string _keyVaultUri => _configuration.GetValue<string>("KeyVault:VaultUri");
+
+        private static string _queueName => _configuration.GetValue<string>("Storage:QueueName");
             
     }
 }
