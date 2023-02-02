@@ -1,6 +1,7 @@
 ﻿using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using Company.Default.Cloud.Storage;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -275,9 +276,10 @@ namespace Company.Default.Tests.Cloud
         {
             var config = TestUtils.GetConfiguration();
 
-            string connectionString = config.GetSection("Storage:ConnectionString").Value;
+            string connectionString = config.GetValue<string>("Storage:ConnectionString");
+            string queueName = config.GetValue<string>("Storage:QueueName");
 
-            QueueClient queueClient = new QueueClient(connectionString, "queuetest");
+            QueueClient queueClient = new QueueClient(connectionString, queueName);
 
             return new QueueStorageService(queueClient);
         }

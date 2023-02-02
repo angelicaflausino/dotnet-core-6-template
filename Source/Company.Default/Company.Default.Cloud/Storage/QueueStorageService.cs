@@ -1,7 +1,6 @@
 ﻿using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using Company.Default.Cloud.Interfaces;
-using System.Threading;
 
 namespace Company.Default.Cloud.Storage
 {
@@ -12,10 +11,12 @@ namespace Company.Default.Cloud.Storage
         public QueueStorageService(QueueClient queueClient)
         {
             _queueClient = queueClient;
+
+            CreateIfNotExists();
         }
 
         #region Queue Operations
-        public void CreateIfNotExists(Dictionary<string, string>? metadata) => _queueClient.CreateIfNotExists(metadata);
+        public void CreateIfNotExists(Dictionary<string, string>? metadata = null) => _queueClient.CreateIfNotExists(metadata);
 
         public async Task CreateIfNotExistsAsync(Dictionary<string, string>? metadata, CancellationToken cancellationToken = default) => await _queueClient.CreateIfNotExistsAsync(metadata, cancellationToken);
 
