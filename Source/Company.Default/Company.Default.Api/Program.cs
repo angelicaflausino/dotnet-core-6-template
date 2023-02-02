@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 
 namespace Company.Default.Api
@@ -10,11 +9,7 @@ namespace Company.Default.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Providing a connection string is required if you're using the
-            // standalone Microsoft.Extensions.Logging.ApplicationInsights package,
-            // or when you need to capture logs during application startup, such as
-            // in Program.cs or Startup.cs itself.
-
+            builder.Services.AddApplicationInsightsTelemetry();
             // Add services to the container.
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
