@@ -7,12 +7,12 @@ namespace Company.Default.Cloud.Insights
     public class AppInsightsService : IAppInsightsService
     {
         private readonly TelemetryClient _telemetryClient;
-        private readonly ILogger _logger;
+        private readonly ILogger<AppInsightsService> _logger;
 
-        public AppInsightsService(TelemetryClient telemetryClient, ILogger logger)
+        public AppInsightsService(TelemetryClient telemetryClient, ILoggerFactory loggerFactory)
         {
             _telemetryClient = telemetryClient;
-            _logger = logger;
+            _logger = loggerFactory.CreateLogger<AppInsightsService>();
         }
 
         public void LogCritical(string? message, params object?[] args)
@@ -58,16 +58,21 @@ namespace Company.Default.Cloud.Insights
         public void TrackEvent(string eventName, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null)
         {
             _telemetryClient.TrackEvent(eventName, properties, metrics);
+            Flush();
         }
 
         public void TrackException(Exception exception, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null)
         {
             _telemetryClient.TrackException(exception, properties, metrics);
+            Flush();
         }
 
         public void TrackRequest(string name, DateTimeOffset startTime, TimeSpan duration, string responseCode, bool success)
         {
             _telemetryClient.TrackRequest(name, startTime, duration, responseCode, success);
+            Flush();
         }
+
+        private void Flush() => _telemetryClient.Flush();
     }
 }

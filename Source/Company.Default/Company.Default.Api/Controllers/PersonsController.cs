@@ -3,17 +3,20 @@ using Company.Default.Domain.Entities;
 using Company.Default.Domain.Filters;
 using Company.Default.Domain.Services;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Web.Resource;
 
 namespace Company.Default.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonsController : ControllerBase
     {
         private readonly IPersonService _service;
         private readonly ICrudService<Person, long> _crudService;
-
+     
         public PersonsController(IPersonService service, ICrudService<Person, long> crudService)
         {
             _service = service; 
@@ -26,6 +29,7 @@ namespace Company.Default.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
         [ProducesResponseType(typeof(PersonDto), 200)]
         public IActionResult Get([FromRoute]long id)
         {
