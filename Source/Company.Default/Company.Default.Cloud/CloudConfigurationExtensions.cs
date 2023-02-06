@@ -1,4 +1,5 @@
 ﻿using Azure.Storage.Queues;
+using Company.Default.Cloud.Insights;
 using Company.Default.Cloud.Interfaces;
 using Company.Default.Cloud.KeyVault;
 using Company.Default.Cloud.Storage;
@@ -26,7 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 //Queue
                 builder.AddQueueServiceClient(_storageConnectionString);
                 //Table
-                builder.AddTableServiceClient(_storageConnectionString);                
+                builder.AddTableServiceClient(_storageConnectionString); 
             });
 
             services.AddScoped<IBlobStorageService, BlobStorageService>();
@@ -37,6 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new QueueStorageService(queueClient);
             });
             services.AddScoped<ITableStorageService, TableStorageService>();
+            services.AddScoped<IAppInsightsService, AppInsightsService>();
         }
 
         private static string _storageConnectionString => _configuration.GetValue<string>("Storage:ConnectionString");
