@@ -1,4 +1,5 @@
-﻿using Company.Default.Domain.Dtos;
+﻿using Company.Default.Api.Scopes;
+using Company.Default.Domain.Dtos;
 using Company.Default.Domain.Entities;
 using Company.Default.Domain.Filters;
 using Company.Default.Domain.Services;
@@ -29,7 +30,9 @@ namespace Company.Default.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
+        [RequiredScopeOrAppPermission(
+            AcceptedScope = new[] { ApiScopes.PERSON_READ },
+            AcceptedAppPermission = new[] { ApiScopes.PERSON_READ_ALL })]
         [ProducesResponseType(typeof(PersonDto), 200)]
         public IActionResult Get([FromRoute]long id)
         {
@@ -44,6 +47,9 @@ namespace Company.Default.Api.Controllers
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpGet("search")]
+        [RequiredScopeOrAppPermission(
+            AcceptedScope = new[] { ApiScopes.PERSON_READ },
+            AcceptedAppPermission = new[] { ApiScopes.PERSON_READ_ALL })]
         [ProducesResponseType(typeof(PagedResultDto<PersonDto>), 200)]
         public IActionResult GetSearch([FromQuery]PersonFilterParameter filter) 
         {
@@ -57,6 +63,9 @@ namespace Company.Default.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("all")]
+        [RequiredScopeOrAppPermission(
+            AcceptedScope = new[] { ApiScopes.PERSON_READ },
+            AcceptedAppPermission = new[] { ApiScopes.PERSON_READ_ALL })]
         [ProducesResponseType(typeof(IEnumerable<PersonDto>), 200)]
         public IActionResult GetAll()
         {
@@ -71,6 +80,9 @@ namespace Company.Default.Api.Controllers
         /// <param name="personDto"></param>
         /// <returns></returns>
         [HttpPost]
+        [RequiredScopeOrAppPermission(
+            AcceptedScope = new[] { ApiScopes.PERSON_READ_WRITE },
+            AcceptedAppPermission = new[] { ApiScopes.PERSON_READ_WRITE_ALL })]
         [ProducesResponseType(typeof(Person), 200)]
         [ProducesResponseType(typeof(ValidationResult), 400)]
         public IActionResult Post([FromBody]PersonDto personDto)
@@ -92,6 +104,9 @@ namespace Company.Default.Api.Controllers
         /// <param name="personDto"></param>
         /// <returns></returns>
         [HttpPut]
+        [RequiredScopeOrAppPermission(
+            AcceptedScope = new[] { ApiScopes.PERSON_READ_WRITE },
+            AcceptedAppPermission = new[] { ApiScopes.PERSON_READ_WRITE_ALL })]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(ValidationResult), 400)]
         public IActionResult Put([FromBody] PersonDto personDto)
@@ -113,6 +128,9 @@ namespace Company.Default.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
+        [RequiredScopeOrAppPermission(
+            AcceptedScope = new[] { ApiScopes.PERSON_DELETE },
+            AcceptedAppPermission = new[] { ApiScopes.PERSON_DELETE_ALL })]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ValidationResult), 400)]
         public IActionResult Delete([FromRoute] long id)
