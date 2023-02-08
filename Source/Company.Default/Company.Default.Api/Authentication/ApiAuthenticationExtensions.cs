@@ -27,26 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void AddAuthenticationAzureAdWithValidClients(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddMicrosoftIdentityWebApi(options =>
-            {
-                configuration.Bind("AzureAd", options);
-                options.Events = new JwtBearerEvents();
-                options.Events.OnTokenValidated = async context =>
-                {
-                    string[] allowedClientApps = configuration.GetValue<string>("AllowedClients").Split(";");
-
-                    string clientappId = context?.Principal?.Claims.FirstOrDefault(x => x.Type == "azp" || x.Type == "appid")?.Value;
-
-                    if (!allowedClientApps.Contains(clientappId))
-                        throw new UnauthorizedAccessException("The client app is not permitted to access this API");
-
-                    await Task.CompletedTask;
-                };
-
-            }, options =>
-            {
-                configuration.Bind("AzureAd", options);
-            });
+                    .AddMicrosoftIdentityWebApi(GetJwtBearerOptions(configuration), GetMicrosoftIdentityOptions(configuration));
         }
 
         /// <summary>
@@ -57,11 +38,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="configuration"></param>
         public static void AddAuthenticationAzureWithMicrosoftGraph(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                 .AddMicrosoftIdentityWebApi(configuration, "AzureAd")
-                 .EnableTokenAcquisitionToCallDownstreamApi()
-                 .AddMicrosoftGraph(configuration.GetSection("Graph"))
-                 .AddInMemoryTokenCaches();
+            services.AddMicrosoftIdentityWebApiAuthentication(configuration)
+                .EnableTokenAcquisitionToCallDownstreamApi()
+                .AddMicrosoftGraph(configuration.GetSection("DownstreamApi"))
+                .AddInMemoryTokenCaches();
         }
 
         /// <summary>
@@ -83,6 +63,35 @@ namespace Microsoft.Extensions.DependencyInjection
             .AddDownstreamWebApi(apiName, configuration.GetSection(graphSectionKey))
             .AddInMemoryTokenCaches();
         }
-        
+
+        private static Action<MicrosoftIdentityOptions> GetMicrosoftIdentityOptions(IConfiguration configuration)
+        {
+            return options =>
+            {
+                configuration.Bind("AzureAd", options);
+            };
+        }
+
+        private static Action<JwtBearerOptions> GetJwtBearerOptions(IConfiguration configuration)
+        {
+            return options =>
+            {
+                configuration.Bind("AzureAd", options);
+                options.Events = new JwtBearerEvents();
+                options.Events.OnTokenValidated = async context =>
+                {
+                    string[] allowedClientApps = configuration.GetValue<string>("AllowedClients").Split(";");
+
+                    string clientappId = context?.Principal?.Claims.FirstOrDefault(x => x.Type == "azp" || x.Type == "appid")?.Value;
+
+                    if (!allowedClientApps.Contains(clientappId))
+                        throw new UnauthorizedAccessException("The client app is not permitted to access this API");
+
+                    await Task.CompletedTask;
+                };
+
+            };
+        }
+
     }
 }

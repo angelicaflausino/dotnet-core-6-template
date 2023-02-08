@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,7 +13,7 @@ namespace Company.Default.Api
 
             //Azure AD Authentication
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
-            builder.Services.AddAuthenticationAzureAdWithValidClients(builder.Configuration);
+            builder.Services.AddAuthenticationAzureWithMicrosoftGraph(builder.Configuration);
 
             //Application Insights
             builder.Services.AddApplicationInsightsTelemetry();
@@ -29,6 +30,7 @@ namespace Company.Default.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(x =>
             {
+                x.CustomSchemaIds(type => type.FullName);
                 x.SwaggerDoc("v1", new OpenApiInfo { Title = "My Api Name", Version = "v1" });
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -62,9 +64,11 @@ namespace Company.Default.Api
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                IdentityModelEventSource.ShowPII = true;
+
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                IdentityModelEventSource.ShowPII = true;
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
