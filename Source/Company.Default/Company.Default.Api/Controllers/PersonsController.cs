@@ -10,6 +10,9 @@ using Microsoft.Identity.Web.Resource;
 
 namespace Company.Default.Api.Controllers
 {
+    /// <summary>
+    /// Sample of controller for entity domain
+    /// </summary>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

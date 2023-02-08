@@ -7,14 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ActiveDirectory\" />
     <Folder Include="Insights\" />
-    <Folder Include="LogicApp\" />
-    <Folder Include="Functions\" />
-    <Folder Include="Graph\" />
-    <Folder Include="Cache\" />
-    <Folder Include="LogicApp\" />
-    <Folder Include="ServiceBus\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +23,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Graph" Version="4.52.0" />
   </ItemGroup>
 
   <ItemGroup>

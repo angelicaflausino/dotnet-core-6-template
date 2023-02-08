@@ -1,4 +1,5 @@
 ﻿using Azure.Storage.Queues;
+using Company.Default.Cloud.Graph;
 using Company.Default.Cloud.Insights;
 using Company.Default.Cloud.Interfaces;
 using Company.Default.Cloud.KeyVault;
@@ -39,6 +40,7 @@ namespace Microsoft.Extensions.DependencyInjection
             });
             services.AddScoped<ITableStorageService, TableStorageService>();
             services.AddScoped<IAppInsightsService, AppInsightsService>();
+            services.AddScoped<IGraphMeService, GraphMeService>();
         }
 
         private static string _storageConnectionString => _configuration.GetValue<string>("Storage:ConnectionString");
