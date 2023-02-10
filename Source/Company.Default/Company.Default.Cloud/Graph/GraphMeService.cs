@@ -46,7 +46,7 @@ namespace Company.Default.Cloud.Graph
 
                 var base64 = Convert.ToBase64String(byteArray);
 
-                return $"data:image/png;base64, {base64}";
+                return $"data:image/jpeg;base64, {base64}";
             }
         }
 
