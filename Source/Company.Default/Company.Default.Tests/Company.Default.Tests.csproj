@@ -37,7 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Company.Default.Api\Company.Default.Api.csproj" />
     <ProjectReference Include="..\Company.Default.Cloud\Company.Default.Cloud.csproj" />
+    <ProjectReference Include="..\Company.Default.Core\Company.Default.Core.csproj" />
+    <ProjectReference Include="..\Company.Default.Infra\Company.Default.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

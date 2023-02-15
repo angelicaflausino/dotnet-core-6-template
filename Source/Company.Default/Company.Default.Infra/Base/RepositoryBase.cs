@@ -1,4 +1,5 @@
-﻿using Company.Default.Infra.Contexts;
+﻿using Company.Default.Domain.Contracts.Repositories;
+using Company.Default.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Company.Default.Domain.Base
+namespace Company.Default.Domain.Contracts.Base
 {
     public abstract class EntityBase<T> : IEntity
     {

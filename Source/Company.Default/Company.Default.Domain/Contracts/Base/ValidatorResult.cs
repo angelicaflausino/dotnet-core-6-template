@@ -1,4 +1,4 @@
-﻿namespace Company.Default.Domain.Base
+﻿namespace Company.Default.Domain.Contracts.Base
 {
     public class ValidatorResult
     {
@@ -9,7 +9,7 @@
         }
 
         public bool IsValid { get; set; }
-        public IList<ValidatorError> Errors { get; set;}
+        public IList<ValidatorError> Errors { get; set; }
     }
 
     public class ValidatorError

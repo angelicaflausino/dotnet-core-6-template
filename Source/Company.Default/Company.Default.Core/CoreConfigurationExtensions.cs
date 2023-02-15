@@ -1,8 +1,8 @@
 ﻿using Company.Default.Core.AutoMapper.Profiles;
 using Company.Default.Core.Services;
 using Company.Default.Core.Validations;
+using Company.Default.Domain.Contracts.Services;
 using Company.Default.Domain.Entities;
-using Company.Default.Domain.Services;
 using FluentValidation;
 
 namespace Microsoft.Extensions.DependencyInjection

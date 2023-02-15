@@ -10,6 +10,7 @@ namespace Company.Default.Core.AutoMapper.Profiles
         {
             CreateMap<Person, PersonDto>()
                 .ForMember(dto => dto.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+
         }
     }
 }

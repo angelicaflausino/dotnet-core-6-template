@@ -1,8 +1,8 @@
 ﻿using Company.Default.Api.Scopes;
+using Company.Default.Domain.Contracts.Services;
 using Company.Default.Domain.Dtos;
 using Company.Default.Domain.Entities;
 using Company.Default.Domain.Filters;
-using Company.Default.Domain.Services;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,5 @@
-﻿using Company.Default.Infra.Contexts;
+﻿using Company.Default.Domain.Contracts.Repositories;
+using Company.Default.Infra.Contexts;
 using Company.Default.Infra.Repositories;
 
 namespace Company.Default.Infra.Base
@@ -6,7 +7,7 @@ namespace Company.Default.Infra.Base
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
-        private PersonRepository _personRepository;
+        private IPersonRepository _personRepository;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -21,6 +22,6 @@ namespace Company.Default.Infra.Base
 
         public void SaveChanges() => _context.SaveChanges();
 
-        public PersonRepository Person => _personRepository = _personRepository ?? new PersonRepository(_context);
+        public IPersonRepository Person => _personRepository = _personRepository ?? new PersonRepository(_context);
     }
 }

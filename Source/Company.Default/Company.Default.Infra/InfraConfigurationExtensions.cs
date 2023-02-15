@@ -1,4 +1,5 @@
-﻿using Company.Default.Infra.Base;
+﻿using Company.Default.Domain.Contracts.Repositories;
+using Company.Default.Infra.Base;
 using Company.Default.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 

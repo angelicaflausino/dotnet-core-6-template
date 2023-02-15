@@ -1,6 +1,6 @@
 ﻿using Company.Default.Domain.Options;
 
-namespace Company.Default.Domain.Base
+namespace Company.Default.Domain.Contracts.Base
 {
     public abstract class FilterParameterBase
     {
