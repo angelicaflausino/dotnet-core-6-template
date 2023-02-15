@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace Company.Default.Tests
+﻿namespace Company.Default.Tests
 {
     public static class TestUtils
     {
@@ -12,6 +10,17 @@ namespace Company.Default.Tests
                 .Build();
 
             return config;
+        }
+
+        public static IMapper GetAutoMapper()
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddMaps(Assembly.GetAssembly(typeof(EntityToDtoProfile)));
+            });
+            configuration.AssertConfigurationIsValid();
+
+            return configuration.CreateMapper();
         }
     }
 }

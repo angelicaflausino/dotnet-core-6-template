@@ -1,4 +1,4 @@
-﻿namespace Company.Default.Domain.Services
+﻿namespace Company.Default.Domain.Contracts.Services
 {
     public interface ICrudService<T, TKey> where T : class
     {

@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Company.Default.Cloud\Company.Default.Cloud.csproj" />
     <ProjectReference Include="..\Company.Default.Domain\Company.Default.Domain.csproj" />
     <ProjectReference Include="..\Company.Default.Infra\Company.Default.Infra.csproj" />
   </ItemGroup>

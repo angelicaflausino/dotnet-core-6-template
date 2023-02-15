@@ -9,7 +9,9 @@ namespace Company.Default.Core.AutoMapper.Profiles
         public DtoToEntityProfile()
         {
             CreateMap<PersonDto, Person>()
-                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.GetAge()));
+                .ForMember(dest => dest.Enabled, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
         }
     }
 }

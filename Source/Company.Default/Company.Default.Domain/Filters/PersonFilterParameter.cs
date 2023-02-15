@@ -1,4 +1,4 @@
-﻿using Company.Default.Domain.Base;
+﻿using Company.Default.Domain.Contracts.Base;
 using Company.Default.Domain.Enumerables;
 
 namespace Company.Default.Domain.Filters

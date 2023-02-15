@@ -1,9 +1,9 @@
-﻿using Company.Default.Domain.Base;
+﻿using Company.Default.Domain.Contracts.Base;
 using Company.Default.Domain.Dtos;
 using Company.Default.Domain.Entities;
 using Company.Default.Domain.Filters;
 
-namespace Company.Default.Domain.Services
+namespace Company.Default.Domain.Contracts.Services
 {
     public interface IPersonService
     {

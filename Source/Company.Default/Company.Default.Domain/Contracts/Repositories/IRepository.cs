@@ -1,7 +1,7 @@
 ﻿using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
-namespace Company.Default.Infra.Base
+namespace Company.Default.Domain.Contracts.Repositories
 {
     public interface IRepository<TEntity, TKey> where TEntity : class
     {

@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Company.Default.Domain.Base;
+using Company.Default.Cloud.Interfaces;
+using Company.Default.Domain.Contracts.Base;
+using Company.Default.Domain.Contracts.Repositories;
+using Company.Default.Domain.Contracts.Services;
 using Company.Default.Domain.Dtos;
 using Company.Default.Domain.Entities;
 using Company.Default.Domain.Filters;
-using Company.Default.Domain.Services;
-using Company.Default.Infra.Base;
 using FluentValidation;
 using FluentValidation.Results;
 using LinqKit;
-using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 
 namespace Company.Default.Core.Services
@@ -16,16 +16,16 @@ namespace Company.Default.Core.Services
     public class PersonService : IPersonService
     {
         private readonly IUnitOfWork _uow;
-        private readonly ILogger<PersonService> _logger;
         private readonly IMapper _mapper;
         private readonly IValidator<Person> _validator;
+        private readonly IAppInsightsService _appInsightsService;
 
-        public PersonService(IUnitOfWork uow, ILogger<PersonService> logger, IMapper mapper, IValidator<Person> validator)
+        public PersonService(IUnitOfWork uow, IMapper mapper, IValidator<Person> validator, IAppInsightsService appInsightsService)
         {
             _uow = uow;
-            _logger = logger;
             _mapper = mapper;
             _validator = validator;
+            _appInsightsService = appInsightsService;
         }
 
         public IEnumerable<PersonDto> GetAll()
@@ -40,7 +40,7 @@ namespace Company.Default.Core.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _appInsightsService.LogError(ex.Message, ex);
                 throw;
             }
         }
@@ -53,7 +53,6 @@ namespace Company.Default.Core.Services
                 var paged = _uow.Person.GetPaged(expression, parameter.Page, parameter.Size, parameter.SortBy);
                 var persons = paged.Queryable.ToList();
 
-                //TODO: Seria melhor projetar o dto com o linq
                 return new PagedResultDto<PersonDto> 
                 { 
                     Total = paged.RowCount, 
@@ -62,12 +61,11 @@ namespace Company.Default.Core.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _appInsightsService.LogError(ex.Message, ex);
                 throw;
             }
         }
 
-        //TODO: Projetar o Dto?
         public PersonDto GetPerson(long id)
         {
             try
@@ -80,7 +78,7 @@ namespace Company.Default.Core.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _appInsightsService.LogError(ex.Message, ex);
                 throw;
             }
         }
@@ -132,7 +130,6 @@ namespace Company.Default.Core.Services
         {
             Id = y.Id,
             DateBirth = y.DateBirth,
-            Age = y.Age,
             FirstName = y.FirstName,
             LastName = y.LastName,
             FullName = y.FirstName + " " + y.LastName,

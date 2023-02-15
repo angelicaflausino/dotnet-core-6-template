@@ -1,13 +1,14 @@
-﻿using Company.Default.Domain.Entities;
+﻿using Company.Default.Domain.Contracts.Repositories;
+using Company.Default.Domain.Entities;
 using Company.Default.Infra.Base;
 using Company.Default.Infra.Contexts;
 
 namespace Company.Default.Infra.Repositories
 {
-    public class PersonRepository : RepositoryBase<Person, long>
+    public class PersonRepository : RepositoryBase<Person, long>, IPersonRepository
     {
         public PersonRepository(AppDbContext context) : base(context)
-        {  
+        {
         }
 
         /// <summary>

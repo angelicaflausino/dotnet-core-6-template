@@ -1,19 +1,19 @@
-﻿using Company.Default.Domain.Entities;
-using Company.Default.Domain.Services;
-using Company.Default.Infra.Base;
-using Microsoft.Extensions.Logging;
+﻿using Company.Default.Cloud.Interfaces;
+using Company.Default.Domain.Contracts.Repositories;
+using Company.Default.Domain.Contracts.Services;
+using Company.Default.Domain.Entities;
 
 namespace Company.Default.Core.Services
 {
     public class PersonCrudService : ICrudService<Person, long>
     {
         private readonly IUnitOfWork _uow;
-        private readonly ILogger<PersonCrudService> _logger;
+        private readonly IAppInsightsService _appInsightsService;
 
-        public PersonCrudService(IUnitOfWork uow, ILoggerFactory loggerFactory)
+        public PersonCrudService(IUnitOfWork uow, IAppInsightsService appInsightsService)
         {
             _uow = uow;
-            _logger = loggerFactory.CreateLogger<PersonCrudService>();
+            _appInsightsService = appInsightsService;
         }
 
         public Person Create(Person entity)
@@ -29,7 +29,7 @@ namespace Company.Default.Core.Services
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _appInsightsService.LogError(ex.Message, ex);
                 _uow.RollbackTransaction();
                 throw;
             }
@@ -50,7 +50,7 @@ namespace Company.Default.Core.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _appInsightsService.LogError(ex.Message, ex);
                 _uow.RollbackTransaction();
                 throw;
             }
@@ -64,7 +64,7 @@ namespace Company.Default.Core.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _appInsightsService.LogError(ex.Message, ex);
                 throw;
             }
         }
@@ -82,7 +82,7 @@ namespace Company.Default.Core.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _appInsightsService.LogError(ex.Message, ex);
                 _uow.RollbackTransaction();
                 throw;
             }

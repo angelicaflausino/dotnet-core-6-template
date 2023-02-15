@@ -1,4 +1,4 @@
-﻿namespace Company.Default.Domain.Base
+﻿namespace Company.Default.Domain.Contracts.Base
 {
     public interface IEntity
     {

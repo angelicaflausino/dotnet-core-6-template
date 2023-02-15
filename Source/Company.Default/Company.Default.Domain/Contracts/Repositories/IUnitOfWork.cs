@@ -1,6 +1,4 @@
-﻿using Company.Default.Infra.Repositories;
-
-namespace Company.Default.Infra.Base
+﻿namespace Company.Default.Domain.Contracts.Repositories
 {
     public interface IUnitOfWork
     {
@@ -27,6 +25,6 @@ namespace Company.Default.Infra.Base
         /// <summary>
         /// Entity Person specialized repository
         /// </summary>
-        PersonRepository Person { get; }
+        IPersonRepository Person { get; }
     }
 }
