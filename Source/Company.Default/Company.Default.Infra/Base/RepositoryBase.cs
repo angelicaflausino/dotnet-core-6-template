@@ -20,8 +20,7 @@ namespace Company.Default.Infra.Base
             _context.Set<TEntity>().Add(entity);
         }
 
-        //TODO: Utilizar ou não ValueTask
-        public virtual Task AddAsync(TEntity entity, CancellationToken cancellationToken)
+        public virtual Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
            var result = _context.Set<TEntity>().AddAsync(entity, cancellationToken);
 
@@ -33,7 +32,7 @@ namespace Company.Default.Infra.Base
             _context.Set<TEntity>().AddRange(entities);
         }
 
-        public virtual Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
+        public virtual Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
             return _context.Set<TEntity>().AddRangeAsync(entities, cancellationToken);
         }
@@ -53,7 +52,7 @@ namespace Company.Default.Infra.Base
             return _context.Set<TEntity>().Find(keyId);
         }
 
-        public virtual ValueTask<TEntity> FindByIdAsync(TKey keyId, CancellationToken cancellationToken)
+        public virtual ValueTask<TEntity> FindByIdAsync(TKey keyId, CancellationToken cancellationToken = default)
         {
             return _context.Set<TEntity>().FindAsync(keyId, cancellationToken);
         }
@@ -100,7 +99,7 @@ namespace Company.Default.Infra.Base
             return _context.Set<TEntity>().Find(keyId);
         }
 
-        public virtual ValueTask<TEntity> GetByIdAsync(TKey keyId, CancellationToken cancellationToken)
+        public virtual ValueTask<TEntity> GetByIdAsync(TKey keyId, CancellationToken cancellationToken = default )
         {
             return _context.Set<TEntity>().FindAsync(keyId, cancellationToken);
         }
