@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Azure.Storage.Sas;
 using Company.Default.Cloud.Storage;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
@@ -192,6 +193,40 @@ namespace Company.Default.Tests.Cloud
             var result = await _service.ListBlobs(_containerName, pageSize, CancellationToken.None);
 
             Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public async Task GenerateBlobSasUri_NotNull()
+        {
+            var blobName = await GetUploadedBlobName();
+            var sasBuilder = new BlobSasBuilder
+            {
+                BlobContainerName = _containerName,
+                BlobName = blobName,
+                ExpiresOn = DateTimeOffset.UtcNow.AddHours(1),
+                Resource = "b"
+            };
+            sasBuilder.SetPermissions(BlobSasPermissions.Read);
+
+            var result = _service.GenerateBlobSasUri(_containerName, blobName, sasBuilder);
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void GenerateContainerSasUri_NotNull()
+        {
+            var sasBuilder = new BlobSasBuilder
+            {
+                BlobContainerName = _containerName,
+                ExpiresOn = DateTimeOffset.UtcNow.AddHours(1),
+                Resource = "c"
+            };
+            sasBuilder.SetPermissions(BlobSasPermissions.Read);
+
+            var result = _service.GenerateContainerSasUri(_containerName, sasBuilder);
+
+            Assert.NotNull(result);
         }
 
         private BlobStorageService GetBlobStorageService()

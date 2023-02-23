@@ -1,6 +1,7 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs.Specialized;
+using Azure.Storage.Sas;
 using Company.Default.Cloud.Interfaces;
 using System.Collections;
 using System.IO.Compression;
@@ -11,6 +12,7 @@ namespace Company.Default.Cloud.Storage
     public class BlobStorageService : IBlobStorageService
     {
         private readonly BlobServiceClient _serviceClient;
+        private const string SAS_ERROR = "Storage account requirements exception: {0} must be authorized with Shared Key credentials to create a service SAS.";
 
         private void ValidateContainerAndBlobName(string containerName, string blobName)
         {
@@ -300,6 +302,31 @@ namespace Company.Default.Cloud.Storage
             var properties = await blobClient.GetPropertiesAsync(cancellationToken: cancellationToken);
 
             return properties.Value;
+        }
+
+        public Uri GenerateBlobSasUri(string containerName, string blobName, BlobSasBuilder blobSasBuilder)
+        {
+            BlobContainerClient container = GetContainerClient(containerName);
+            BlobClient blobClient = container.GetBlobClient(blobName);
+
+            if (!blobClient.CanGenerateSasUri)
+                throw new InvalidOperationException(string.Format(SAS_ERROR, "BlobClient"));
+
+            Uri sasUri = blobClient.GenerateSasUri(blobSasBuilder);
+
+            return sasUri;
+        }
+
+        public Uri GenerateContainerSasUri(string containerName, BlobSasBuilder blobSasBuilder)
+        {
+            BlobContainerClient container = GetContainerClient(containerName);
+
+            if(!container.CanGenerateSasUri)
+                throw new InvalidOperationException(string.Format(SAS_ERROR, "ContainerClient"));
+
+            Uri sasUri = container.GenerateSasUri(blobSasBuilder);
+
+            return sasUri;
         }
     }
 }
