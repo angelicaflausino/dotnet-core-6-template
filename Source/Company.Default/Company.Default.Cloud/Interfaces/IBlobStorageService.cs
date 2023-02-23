@@ -2,6 +2,7 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs.Specialized;
+using Azure.Storage.Sas;
 
 namespace Company.Default.Cloud.Interfaces
 {
@@ -23,5 +24,7 @@ namespace Company.Default.Cloud.Interfaces
         Task<BlobProperties> GetBlobPropertiesAsync(string containerName, string blobName, CancellationToken cancellationToken= default);
         Task<IList<BlobItem>> ListBlobs(string containerName, int pageSize, CancellationToken cancellationToken = default);
         Task<IList<TaggedBlobItem>> ListBlobsByTags(string query, CancellationToken cancellationToken = default);
+        Uri GenerateBlobSasUri(string containerName, string blobName, BlobSasBuilder blobSasBuilder);
+        Uri GenerateContainerSasUri(string containerName, BlobSasBuilder blobSasBuilder);
     }
 }
