@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Options;
+using Company.Default.Domain.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,6 +10,9 @@ namespace Company.Default.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //Configure custom API settings
+            ApiOptions.ConfigureApiOptions(builder.Configuration);
 
             //Azure AD Authentication
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
