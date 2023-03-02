@@ -1,0 +1,31 @@
+<VSTemplate Version="2.0.0" Type="ProjectGroup"
+    xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+    <TemplateData>
+        <Name>Company.Default</Name>
+        <Description>.NET Core 6.0 API Template</Description>
+        <Icon>Icon.ico</Icon>
+        <ProjectType>CSharp</ProjectType>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectCollection>
+            <ProjectTemplateLink ProjectName="$projectname$.Api" CopyParameters="true">
+                Company.Default.Api\MyTemplate.vstemplate
+            </ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$projectname$.Cloud" CopyParameters="true">
+                Company.Default.Cloud\MyTemplate.vstemplate
+            </ProjectTemplateLink>
+			<ProjectTemplateLink ProjectName="$projectname$.Core" CopyParameters="true">
+                Company.Default.Core\MyTemplate.vstemplate
+            </ProjectTemplateLink>
+			<ProjectTemplateLink ProjectName="$projectname$.Domain" CopyParameters="true">
+                Company.Default.Domain\MyTemplate.vstemplate
+            </ProjectTemplateLink>
+			<ProjectTemplateLink ProjectName="$projectname$.Infra" CopyParameters="true">
+                Company.Default.Infra\MyTemplate.vstemplate
+            </ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$projectname$.Tests" CopyParameters="true">
+                Company.Default.Tests\MyTemplate.vstemplate
+            </ProjectTemplateLink>
+        </ProjectCollection>
+    </TemplateContent>
+</VSTemplate>

@@ -1,0 +1,9 @@
+global using Xunit;
+global using Moq;
+global using AutoMapper;
+global using $ext_safeprojectname$.Core.AutoMapper.Profiles;
+global using Microsoft.Extensions.Configuration;
+global using System.Reflection;
+global using FluentValidation;
+global using System.Linq.Dynamic.Core;
+global using System.Linq.Expressions;

@@ -1,0 +1,45 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Company.Default.Cloud</Name>
+    <Description>Template Cloud</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Company.Default.Cloud</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+    <Hidden>true</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$ext_safeprojectname$.Cloud.csproj" File="Company.Default.Cloud.csproj" ReplaceParameters="true">
+      <Folder Name="Graph" TargetFolderName="Graph">
+        <ProjectItem ReplaceParameters="true" TargetFileName="GraphMeService.cs">GraphMeService.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Insights" TargetFolderName="Insights">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppInsightsService.cs">AppInsightsService.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Interfaces" TargetFolderName="Interfaces">
+        <ProjectItem ReplaceParameters="true" TargetFileName="IAppInsightsService.cs">IAppInsightsService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IBlobStorageService.cs">IBlobStorageService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IGraphMeService.cs">IGraphMeService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IKeyVaultService.cs">IKeyVaultService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IQueueStorageService.cs">IQueueStorageService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ITableStorageService.cs">ITableStorageService.cs</ProjectItem>
+      </Folder>
+      <Folder Name="KeyVault" TargetFolderName="KeyVault">
+        <ProjectItem ReplaceParameters="true" TargetFileName="KeyVaultService.cs">KeyVaultService.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Storage" TargetFolderName="Storage">
+        <ProjectItem ReplaceParameters="true" TargetFileName="BlobStorageService.cs">BlobStorageService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="QueueStorageService.cs">QueueStorageService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TableStorageService.cs">TableStorageService.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="CloudConfigurationExtensions.cs">CloudConfigurationExtensions.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

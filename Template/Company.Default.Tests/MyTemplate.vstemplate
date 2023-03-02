@@ -1,0 +1,50 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Company.Default.Tests</Name>
+    <Description>Template Testes</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Company.Default.Tests</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+    <Hidden>true</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$ext_safeprojectname$.Tests.csproj" File="Company.Default.Tests.csproj" ReplaceParameters="true">
+      <Folder Name="Assets" TargetFolderName="Assets">
+        <ProjectItem ReplaceParameters="false" TargetFileName="sample.png">sample.png</ProjectItem>
+      </Folder>
+      <Folder Name="Cloud" TargetFolderName="Cloud">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppInsightsServiceTests.cs">AppInsightsServiceTests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="BlobStorageServiceTests.cs">BlobStorageServiceTests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="KeyVaultServiceTests.cs">KeyVaultServiceTests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="QueueStorageServiceTests.cs">QueueStorageServiceTests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TableStorageServiceTests.cs">TableStorageServiceTests.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Controllers" TargetFolderName="Controllers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="MeControllerTests.cs">MeControllerTests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonsControllerTests.cs">PersonsControllerTests.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Core" TargetFolderName="Core">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonCrudServiceTests.cs">PersonCrudServiceTests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonServiceTests.cs">PersonServiceTests.cs</ProjectItem>
+      </Folder>
+      <Folder Name="DataFaker" TargetFolderName="DataFaker">
+        <ProjectItem ReplaceParameters="true" TargetFileName="FooEntity.cs">FooEntity.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Infra" TargetFolderName="Infra">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonRepositoryTests.cs">PersonRepositoryTests.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.Test.json">appsettings.Test.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="MockingUtils.cs">MockingUtils.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="TestUtils.cs">TestUtils.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Usings.cs">Usings.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
