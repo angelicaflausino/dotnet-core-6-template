@@ -66,3 +66,19 @@ A arquitetura do projeto basea-se no modelo **DDD** *(Domain-Driven-Design)*, se
 - [xunit](https://www.nuget.org/packages/xunit/2.4.1?_src=template)
 - [xunit.runner.visualstudio](https://www.nuget.org/packages/xunit.runner.visualstudio/2.4.3?_src=template)
 
+## Template do Projeto
+
+Para instalar o template do projeto no **Visual Studio 2022** baixe o arquivo [Company.Default.zip](https://github.com/angelicaflausino/dotnet-core-6-template/blob/master/Template/Company.Default.zip) na pasta **C:\Users\USER-NAME\Documents\Visual Studio 2022\Templates\ProjectTemplates**. Não é necessário descompactar o arquivo.
+
+No Visual Studio, clique em **Criar um novo projeto**, pesquise por **Company** e selecione o template **Company.Default**
+
+![Company Default Template](https://github.com/angelicaflausino/dotnet-core-6-template/blob/master/Wiki/images/companytemplate.PNG)
+
+Na tela seguinte informe o nome do Projeto, selecione o diretório, marque a opção **Colocar a solução e o projeto no mesmo diretório** em seguida clique em **Criar**
+
+![Company Default Project Name](https://github.com/angelicaflausino/dotnet-core-6-template/blob/master/Wiki/images/companyappname.PNG)
+
+**Exemplo do projeto criado:**
+
+![Company App Sample](https://github.com/angelicaflausino/dotnet-core-6-template/blob/master/Wiki/images/companysample.PNG)
+
