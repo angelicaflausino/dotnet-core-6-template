@@ -1,0 +1,36 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Company.Default.Core</Name>
+    <Description>Template Core</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Company.Default.Core</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+    <Hidden>true</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$ext_safeprojectname$.Core.csproj" File="Company.Default.Core.csproj" ReplaceParameters="true">
+      <Folder Name="AutoMapper" TargetFolderName="AutoMapper">
+        <Folder Name="Profiles" TargetFolderName="Profiles">
+          <ProjectItem ReplaceParameters="true" TargetFileName="DtoToEntityProfile.cs">DtoToEntityProfile.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="EntityToDtoProfile.cs">EntityToDtoProfile.cs</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="Services" TargetFolderName="Services">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonCrudService.cs">PersonCrudService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonService.cs">PersonService.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Validations" TargetFolderName="Validations">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonValidator.cs">PersonValidator.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="CoreConfigurationExtensions.cs">CoreConfigurationExtensions.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

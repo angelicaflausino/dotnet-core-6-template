@@ -1,0 +1,62 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Company.Default.Domain</Name>
+    <Description>Template Domain</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Company.Default.Domain</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+    <Hidden>true</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$ext_safeprojectname$.Domain.csproj" File="Company.Default.Domain.csproj" ReplaceParameters="true">
+      <Folder Name="Contracts" TargetFolderName="Contracts">
+        <Folder Name="Base" TargetFolderName="Base">
+          <ProjectItem ReplaceParameters="true" TargetFileName="EntityBase.cs">EntityBase.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="FilterParameterBase.cs">FilterParameterBase.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IEntity.cs">IEntity.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ValidatorResult.cs">ValidatorResult.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Repositories" TargetFolderName="Repositories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IPersonRepository.cs">IPersonRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IRepository.cs">IRepository.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IUnitOfWork.cs">IUnitOfWork.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Services" TargetFolderName="Services">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ICrudService.cs">ICrudService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IPersonService.cs">IPersonService.cs</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="Dtos" TargetFolderName="Dtos">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PagedResultDto.cs">PagedResultDto.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonDto.cs">PersonDto.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Entities" TargetFolderName="Entities">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Person.cs">Person.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Enumerables" TargetFolderName="Enumerables">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonTypeEnum.cs">PersonTypeEnum.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Extensions" TargetFolderName="Extensions">
+        <ProjectItem ReplaceParameters="true" TargetFileName="EnumExtension.cs">EnumExtension.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Filters" TargetFolderName="Filters">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonFilterParameter.cs">PersonFilterParameter.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Options" TargetFolderName="Options">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApiOptions.cs">ApiOptions.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Resources" TargetFolderName="Resources">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Validations.resx">Validations.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Validations.Designer.cs">Validations.Designer.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

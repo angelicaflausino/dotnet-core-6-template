@@ -1,0 +1,36 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Company.Default.Infra</Name>
+    <Description>Template Infra</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Company.Default.Infra</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+    <Hidden>true</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$ext_safeprojectname$.Infra.csproj" File="Company.Default.Infra.csproj" ReplaceParameters="true">
+      <Folder Name="Base" TargetFolderName="Base">
+        <ProjectItem ReplaceParameters="true" TargetFileName="RepositoryBase.cs">RepositoryBase.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="UnitOfWork.cs">UnitOfWork.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Configurations" TargetFolderName="Configurations">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonConfiguration.cs">PersonConfiguration.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Contexts" TargetFolderName="Contexts">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppDbContext.cs">AppDbContext.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Repositories" TargetFolderName="Repositories">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PersonRepository.cs">PersonRepository.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="InfraConfigurationExtensions.cs">InfraConfigurationExtensions.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
