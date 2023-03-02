@@ -1,7 +1,4 @@
 ﻿using Azure.Storage.Queues.Models;
-using Microsoft.Graph.TermStore;
-using Newtonsoft.Json.Linq;
-using System.Threading;
 
 namespace Company.Default.Cloud.Interfaces
 {
